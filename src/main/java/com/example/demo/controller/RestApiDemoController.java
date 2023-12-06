@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cc")
+@RequestMapping("/cc/solutions")
 public class RestApiDemoController {
     private List<Solution> solutions = new ArrayList<>();
 
@@ -23,12 +23,13 @@ public class RestApiDemoController {
     }
 
     // @RequestMapping(value = "/solutions", method = RequestMethod.GET)
-    @GetMapping("/solutions")
+    // @GetMapping("/solutions")
+    @GetMapping
     Iterable<Solution> getSolutions() {
         return solutions;
     }
 
-    @GetMapping("/solutions/{id}")
+    @GetMapping("/{id}")
     Optional<Solution> getSolutionById(@PathVariable String id) {
         for (Solution s : solutions) {
             if (s.getId().equals(id)) {
@@ -39,13 +40,13 @@ public class RestApiDemoController {
         return Optional.empty();
     }
 
-    @PostMapping("/solutions")
+    @PostMapping
     Solution postSolution(@RequestBody Solution solution) {
         solutions.add(solution);
         return solution;
     }
 
-    @PutMapping("/solutions/{id}")
+    @PutMapping("/{id}")
     Solution putSolution(@PathVariable String id, @RequestBody Solution solution) {
         int solutionIndex = -1;
 
@@ -59,7 +60,7 @@ public class RestApiDemoController {
         return (solutionIndex == -1) ? postSolution(solution) : solution;
     }
 
-    @DeleteMapping("/solutions/{id}")
+    @DeleteMapping("/{id}")
     void deleteSolution(@PathVariable String id) {
         solutions.removeIf(s -> s.getId().equals(id));
     }
