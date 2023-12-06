@@ -58,4 +58,9 @@ public class RestApiDemoController {
 
         return (solutionIndex == -1) ? postSolution(solution) : solution;
     }
+
+    @DeleteMapping("/solutions/{id}")
+    void deleteSolution(@PathVariable String id) {
+        solutions.removeIf(s -> s.getId().equals(id));
+    }
 }
