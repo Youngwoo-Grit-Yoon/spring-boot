@@ -1,2 +1,2 @@
-# spring-boot
+# Spring Boot
 Spring Boot 공부
