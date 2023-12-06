@@ -29,7 +29,7 @@ public class RestApiDemoController {
     }
 
     @GetMapping("/solutions/{id}")
-    Optional<Solution> getCoffeeById(@PathVariable String id) {
+    Optional<Solution> getSolutionById(@PathVariable String id) {
         for (Solution s : solutions) {
             if (s.getId().equals(id)) {
                 return Optional.of(s);
@@ -37,5 +37,25 @@ public class RestApiDemoController {
         }
 
         return Optional.empty();
+    }
+
+    @PostMapping("/solutions")
+    Solution postSolution(@RequestBody Solution solution) {
+        solutions.add(solution);
+        return solution;
+    }
+
+    @PutMapping("/solutions/{id}")
+    Solution putSolution(@PathVariable String id, @RequestBody Solution solution) {
+        int solutionIndex = -1;
+
+        for (Solution s : solutions) {
+            if (s.getId().equals(id)) {
+                solutionIndex = solutions.indexOf(s);
+                solutions.set(solutionIndex, solution);
+            }
+        }
+
+        return (solutionIndex == -1) ? postSolution(solution) : solution;
     }
 }
