@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Agent;
 import com.example.demo.repository.AgentRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class RestApiAgentController {
                 new Agent("강감찬"),
                 new Agent("이순신")
         ));
+    }
+
+    @GetMapping
+    Iterable<Agent> getAgents() {
+        return this.agentRepository.findAll();
     }
 }
