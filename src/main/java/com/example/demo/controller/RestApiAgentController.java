@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,12 +15,6 @@ public class RestApiAgentController {
 
     public RestApiAgentController(AgentRepository agentRepository) {
         this.agentRepository = agentRepository;
-
-        this.agentRepository.saveAll(List.of(
-                new Agent("홍길동"),
-                new Agent("강감찬"),
-                new Agent("이순신")
-        ));
     }
 
     @GetMapping
