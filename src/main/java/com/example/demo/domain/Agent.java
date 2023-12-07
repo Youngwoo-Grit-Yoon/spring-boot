@@ -12,7 +12,8 @@ public class Agent {
     /**
      * JPA를 사용해 DB에 데이터를 생성할 때는 기본 생성자가 필요하다.
      */
-    public Agent() {
+    public Agent(String name) {
+        this.name = name;
     }
 
     public void setId(String id) {
