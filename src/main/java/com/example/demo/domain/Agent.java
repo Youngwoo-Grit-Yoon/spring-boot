@@ -2,9 +2,11 @@ package com.example.demo.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 import java.util.UUID;
 
+@Data
 @Entity
 public class Agent {
     @Id
@@ -25,9 +27,5 @@ public class Agent {
 
     public Agent(String name) {
         this(UUID.randomUUID().toString(), name);
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
