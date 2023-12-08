@@ -20,7 +20,6 @@ public class CenterController {
         return name;
     }
 
-
     @GetMapping
     @RequestMapping("/infra")
     String getInfra() {
