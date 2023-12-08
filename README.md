@@ -1,5 +1,8 @@
 # Spring Boot
 Spring Boot 공부
+- 의존성 관리
+- 배포
+- 자동 설정
 ## JPA 사용을 위한 Database 접속 정보
 application.properties 참고
 ```text
