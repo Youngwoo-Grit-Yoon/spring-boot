@@ -1,5 +1,5 @@
 # Spring Boot
-Spring Boot 공부
+## 사용 이유
 - 의존성 관리
 - 배포
 - 자동 설정
