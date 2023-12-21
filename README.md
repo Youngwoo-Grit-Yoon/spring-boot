@@ -65,3 +65,35 @@ public class PlanefinderApplication extends SpringBootServletInitializer {
 11556076 drwxr-x---@  7 youngwooyoon  staff   224B 12  8 08:31 host-manager
 11555602 drwxr-x---@  9 youngwooyoon  staff   288B 12  8 08:31 manager
 ```
+### 5. 외부 라이브러리(gson)를 jar 파일로 직접 의존성 주입
+pom.xml
+```text
+... 내용 생략 ...
+<dependency>
+    <groupId>gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/gson-2.10.1.jar</systemPath>
+</dependency>
+... 내용 생략 ...
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <webResources>
+                    <resource>
+                        <directory>${project.basedir}</directory>
+                        <includes>
+                            <include>gson-2.10.1.jar</include>
+                        </includes>
+                        <targetPath>WEB-INF/lib</targetPath>
+                    </resource>
+                </webResources>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
