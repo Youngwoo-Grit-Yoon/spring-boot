@@ -15,3 +15,53 @@ spring.datasource.password=password
 # JPA
 spring.jpa.hibernate.ddl-auto=create
 ```
+## Spring Boot를 *.war 파일로 빌드하여 외부 톰캣에 배포하기
+### 1. SpringBootServletInitializer 상속
+```text
+package com.thehecklers.planefinder;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+@SpringBootApplication
+public class PlanefinderApplication extends SpringBootServletInitializer {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PlanefinderApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(PlanefinderApplication.class);
+	}
+
+}
+```
+### 2. pom.xml 파일에 war 추가
+```text
+<groupId>com.thehecklers</groupId>
+<artifactId>planefinder</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>war</packaging>
+<name>planefinder</name>
+<description>Data feed for Spring Boot Up and Running</description>
+```
+### 3. 빌드 후 톰캣의 webapps 디렉토리에 ROOT.war 파일로 저장
+```text
+11567441 -rw-r--r--   1 youngwooyoon  staff    45M 12 21 13:46 ROOT.war
+11555433 drwxr-x---@ 61 youngwooyoon  staff   1.9K 12  8 08:31 docs
+11555624 drwxr-x---@  8 youngwooyoon  staff   256B 12  8 08:31 examples
+11556076 drwxr-x---@  7 youngwooyoon  staff   224B 12  8 08:31 host-manager
+11555602 drwxr-x---@  9 youngwooyoon  staff   288B 12  8 08:31 manager
+```
+### 4. 톰캣 실행하여 ROOT 디렉토리 생성 확인
+```text
+11567677 drwxr-x---   5 youngwooyoon  staff   160B 12 21 13:47 ROOT
+11567441 -rw-r--r--   1 youngwooyoon  staff    45M 12 21 13:46 ROOT.war
+11555433 drwxr-x---@ 61 youngwooyoon  staff   1.9K 12  8 08:31 docs
+11555624 drwxr-x---@  8 youngwooyoon  staff   256B 12  8 08:31 examples
+11556076 drwxr-x---@  7 youngwooyoon  staff   224B 12  8 08:31 host-manager
+11555602 drwxr-x---@  9 youngwooyoon  staff   288B 12  8 08:31 manager
+```
